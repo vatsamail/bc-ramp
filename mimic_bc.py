@@ -18,6 +18,7 @@ class Block():
         self.nounce = 0
         self.prev = 0
         self.mine(self.block, self.content, self.prev)
+        print("Mining condition: The hash should contain both 'F' and 'U'. Content:", self.content)
 
 
     def mine(self, block, content, prev):
@@ -59,10 +60,66 @@ class Block():
         return nb
         
 
+class DecentBlockChain():
+    def __init__(self):
+        self.bc1 = BlockChain()
+        self.bc2 = BlockChain()
+        self.bc3 = BlockChain()
+
+   
+    def add(self, block):
+        self.bc1.add(block)
+        self.bc2.add(block)
+        self.bc3.add(block)
+
     
+    def show(self):
+        if len(self.bc1.chain) == len(self.bc2.chain):
+            if len(self.bc3.chain) == len(self.bc1.chain):
+                print("Chain Length is the same:", len(self.bc1.chain))
+            else:
+                print("Chain Length of bc3 is corrupted! bc1 and bc2:", len(self.bc1.chain), "but bc3:", len(self.bc3.chain))
+        else:
+            if len(self.bc3.chain) == len(self.bc1.chain):
+                print("Chain Length of bc2 is corrupted! bc1 and bc3:", len(self.bc1.chain), "but bc2:", len(self.bc2.chain))
+            else:
+                if len(self.bc3.chain) == len(self.bc2.chain):
+                    print("Chain Length of bc2 is corrupted! bc2 and bc3:", len(self.bc2.chain), "but bc1:", len(self.bc1.chain))
+                else:
+                    print("All chain lengths are different!", "bc1:", len(self.bc1.chain), "bc2:", len(self.bc2.chain), "bc3:", len(self.bc3.chain))
+
+        
+        for i, b in enumerate(self.bc1.chain):
+            if (self.bc1.chain[i].content == self.bc2.chain[i].content):
+                if (self.bc2.chain[i].content == self.bc3.chain[i].content):
+                    print("\nBlock Index:", i, "\nBlock Hash:", self.bc1.chain[i].hash, \
+                        "\nPrevious Hash:", self.bc1.chain[i].prev, \
+                            "\nBlock Number:", self.bc1.chain[i].block, \
+                                "\nBlock Nounce:", self.bc1.chain[i].nounce, \
+                                    "\nBlock Content:", self.bc1.chain[i].content)
+                else:
+                    print("BC3 is corrupt. Fixing it.")
+                    self.bc3 = self.bc1.copy()
+                
+            else:
+                if (self.bc2.chain[i].content == self.bc3.chain[i].content):
+                    print("BC1 is corrupt. Fixing it.")
+                    self.bc1 = self.bc2.copy()
+
+                else:
+                    if (self.bc1.chain[i].content == self.bc3.chain[i].content):
+                        print("BC2 is corrupt. Fixing it.")
+                        self.bc2 = self.bc1.copy()
+                    else:
+                        print("Everything is corrupt.")
+                        exit()
+        
+                   
+
+
 
 def main():
-    bc = BlockChain()
+    bc = DecentBlockChain()
     seed = Block("vatsa")
     bc.add(seed)
 
@@ -77,14 +134,14 @@ def main():
 
     b5 = b4.addBlock("Lets' end this!")
     bc.add(b5)
+
+    b3.content = "hacking"
+    bc.show()
     
 
-    for b in bc.chain:
-        b.show()
 
 
-
-
+    
 
 if __name__ == '__main__':
     main()
