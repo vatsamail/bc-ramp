@@ -19,10 +19,15 @@
 
 ## General Pointers
 * https://www.youtube.com/watch?v=M576WGiDBdQ&list=PLI85das5B-EArbVej37onhhawk20IIMwb
+* Rinkyby know-how: https://www.youtube.com/watch?v=M576WGiDBdQ&t=7655s 
 * https://etherscan.io/ -> check your address
 * https://faucet.rinkeby.io/ or https://www.rinkeby.io/#faucet -> test n/w for sample transaction
 * https://ethgasstation.info/
 * https://remix.ethereum.org/
+* https://data.chain.link/ getting the latest price
+* Api calls: https://docs.chain.link/docs/get-the-latest-price 
+* https://blog.polymath.network/a-simple-guide-for-getting-kovan-testnet-poly-27ddeb1149cb
+* https://docs.chain.link/docs/link-token-contracts/
 
 
 ## Course pointers
