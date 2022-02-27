@@ -37,6 +37,18 @@
 
 
 ## Setup
+"""
+Installations for this code
+1. Ganache
+2. node. Check node --version
+3. npm install --global yarn # a package manager
+4. yarn --version
+5. yarn --global add ganache-cli or try this: npm install -g ganache-cli --force
+6. ganache-cli --version
+7. ganache-cli --deterministic # after closing the cli. Use deterministic to get the same private keys and addresses
+8. pip install web3
+9. pip install eth-brownie
+"""
 
 
 ### Jargons
